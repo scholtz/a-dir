@@ -16,10 +16,12 @@ const mutations = {
 const actions = {
   async getCategoryList({ dispatch }, { cat }) {
     console.log("cat", cat);
+    let url = this.state.config.api + "category/";
+    if (cat) url = url + base64url(cat);
     return await dispatch(
       "axios/get",
       {
-        url: this.state.config.api + "category/" + base64url(cat),
+        url,
       },
       { root: true }
     );
