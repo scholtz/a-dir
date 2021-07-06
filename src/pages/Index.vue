@@ -158,6 +158,7 @@ export default {
     },
     addNewTag() {
       this.search = localStorage.getItem("AD_search");
+      if (!this.search) this.search = "";
       if (this.$route.params.newTag) {
         const tags = this.makeTags(
           this.search + ", " + this.$route.params.newTag
@@ -169,6 +170,7 @@ export default {
     },
     addTag(str) {
       this.search = localStorage.getItem("AD_search");
+      if (!this.search) this.search = "";
       if (str) {
         const tags = this.makeTags(this.search + ", " + str);
         this.search = tags.join(", ");
