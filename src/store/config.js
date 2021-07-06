@@ -1,6 +1,6 @@
 const state = () => ({
   LOGO: "/img/logo.svg",
-  api: "http://api.a-dir.net/api/",
+  api: "https://api.a-dir.net/api/",
   VUE_APP_API_MAP: "https://nominatim.openstreetmap.org/",
 });
 
