@@ -24,6 +24,16 @@
             v-model="data.link"
           />
         </div>
+        <div class="mb-3" v-if="$store.state.config.isAdmin">
+          <label for="URL" class="form-label">Visible URL address</label>
+          <input
+            class="form-control"
+            id="URL"
+            placeholder="URL address of your service starting with https://"
+            maxlength="255"
+            v-model="data.url"
+          />
+        </div>
         <div class="mb-3">
           <label for="Description" class="form-label"
             >Short description - max 50 chars</label

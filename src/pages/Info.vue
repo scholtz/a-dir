@@ -19,8 +19,11 @@
                 {{ tag }}
               </span>
             </span>
-            <p class="" v-if="item.link">
-              Web: <a :href="item.link">{{ item.link }}</a>
+            <p class="" v-if="item.url && item.link">
+              Web: <a target="_blank" :href="item.link">{{ item.url }}</a>
+            </p>
+            <p class="" v-else-if="item.link">
+              Web: <a target="_blank" :href="item.link">{{ item.link }}</a>
             </p>
             <p
               v-if="item.htmldescription"
@@ -39,6 +42,8 @@
                     :src="item.image"
                     class="card-img-top"
                     :alt="item.title"
+                    role="button"
+                    @click="imageClick"
                   />
                 </div>
               </div>
@@ -230,6 +235,11 @@ export default {
         this.$router.push("/admin/");
       } else {
         this.openError("Error occured");
+      }
+    },
+    imageClick() {
+      if (this.item && this.item.link) {
+        window.open(this.item.link, "_blank").focus();
       }
     },
   },
