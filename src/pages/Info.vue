@@ -46,7 +46,7 @@
           </div>
         </div>
 
-        <div class="card h-100" v-if="mapShown">
+        <div class="card h-100" v-if="mapShown && this.item">
           <div class="card-header">
             <h5 class="card-title">Location</h5>
             <div
