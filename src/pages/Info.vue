@@ -197,8 +197,7 @@ export default {
       id: this.$route.params.id,
       ip: this.$route.params.ip,
     });
-    if (this.item.geojson) {
-      console.log("center", this.center);
+    if (this.item && this.item.geojson) {
       setTimeout(() => {
         this.center = [
           this.item.geojson.geometry.coordinates[1],
@@ -209,7 +208,6 @@ export default {
     } else {
       this.mapShown = false;
     }
-    console.log("this.item.geojson", this.item, this.item.geojson, this.center);
   },
   methods: {
     ...mapActions({

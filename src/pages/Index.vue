@@ -92,7 +92,7 @@
         </div>
         <div
           class="alert alert-danger my-5"
-          v-if="!loading && list.length == 0"
+          v-if="!loading && (!list || list.length == 0)"
         >
           The search did not return any results. Please click on a tag to remove
           it from the search.
