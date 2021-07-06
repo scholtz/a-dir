@@ -50,7 +50,7 @@
       <section class="my-5" id="search">
         <h5>
           Browse solutions
-          <span v-if="category && tags"
+          <span v-if="category && tags && tags.length > 0"
             >Tags:
             <span
               v-for="tag in tags"
