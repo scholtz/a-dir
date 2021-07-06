@@ -55,6 +55,17 @@ const actions = {
       { root: true }
     );
   },
+  async deleteItem({ dispatch }, { id, ip }) {
+    console.log("deleteItem", id);
+    return await dispatch(
+      "axios/post",
+      {
+        url: this.state.config.api + "deleteItem/" + id + "/" + ip,
+      },
+      { root: true }
+    );
+  },
+
   async addService({ dispatch }, data) {
     return await dispatch(
       "axios/post",

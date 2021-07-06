@@ -105,6 +105,13 @@
         >
           Add eshop
         </button>
+        <button
+          v-if="$store.state.config.isAdmin"
+          class="btn btn-danger"
+          @click="deleteEShopClick"
+        >
+          Delete eshop
+        </button>
       </form>
     </div>
   </PublicLayout>
@@ -177,6 +184,16 @@ export default {
       const result = await this.addService(this.data);
       if (result && result.id) {
         this.$router.push("/info/" + result.id);
+      }
+    },
+    async deleteEShopClick(e) {
+      e.preventDefault();
+      const result = await this.deleteItem({
+        id: this.data.id,
+        ip: this.data.ip,
+      });
+      if (result) {
+        this.$router.push("/admin/");
       }
     },
   },

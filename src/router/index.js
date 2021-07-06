@@ -6,6 +6,7 @@ import AddEShop from "@/pages/AddEShop.vue";
 import AddService from "@/pages/AddService.vue";
 import Info from "@/pages/Info.vue";
 import Admin from "@/pages/Admin.vue";
+import Terms from "@/pages/Terms.vue";
 import NotFound from "@/pages/404.vue";
 
 const routes = [
@@ -83,6 +84,11 @@ const routes = [
     path: "/admin",
     name: "admin",
     component: Admin,
+  },
+  {
+    path: "/terms",
+    name: "terms",
+    component: Terms,
   },
   {
     path: "/:catchAll(.*)",

@@ -203,6 +203,13 @@
           >
             Add place
           </button>
+          <button
+            v-if="$store.state.config.isAdmin"
+            class="btn btn-danger"
+            @click="deletePlaceClick"
+          >
+            Delete place
+          </button>
         </div>
       </form>
     </div>
@@ -391,6 +398,16 @@ export default {
       }
       if (this.data.locations.length == 0) {
         this.geojson.licence = "";
+      }
+    },
+    async deletePlaceClick(e) {
+      e.preventDefault();
+      const result = await this.deleteItem({
+        id: this.data.id,
+        ip: this.data.ip,
+      });
+      if (result) {
+        this.$router.push("/admin/");
       }
     },
   },

@@ -44,7 +44,14 @@
       >
       <Column
         ><template #body="slotProps">
-          <div class="btn btn-primary" @click="goto(slotProps)">Zobraziť</div>
+          <div class="btn btn-primary" @click="goto(slotProps)">Show</div>
+        </template></Column
+      >
+      <Column
+        ><template #body="slotProps">
+          <div class="btn btn-danger" @click="deleteItemClick(slotProps)">
+            Delete
+          </div>
         </template></Column
       >
     </DataTable>
@@ -80,7 +87,20 @@ export default {
     }),
     ...mapActions({
       getUnresolved: "api/getUnresolved",
+      deleteItem: "api/deleteItem",
+      openSuccess: "toast/openSuccess",
     }),
+    async deleteItemClick(slotProps) {
+      if (confirm("Rally?")) {
+        console.log("slotProps", slotProps);
+        const count = await this.deleteItem({
+          id: slotProps.data.id,
+          ip: slotProps.data.ip,
+        });
+        this.items = Object.values(await this.getUnresolved());
+        this.openSuccess("Items deleted: " + count);
+      }
+    },
     goto(slotProps) {
       console.log("slotProps", slotProps);
       if (slotProps.data.type == "place") {

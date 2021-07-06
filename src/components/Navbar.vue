@@ -19,6 +19,11 @@
             >Admin</RouterLink
           >
         </li>
+        <li class="nav-item m-2" v-if="$store.state.config.isAdmin">
+          <RouterLink class="nav-link btn btn-xs btn-primary text-light" to="/"
+            >Directory</RouterLink
+          >
+        </li>
         <li class="nav-item active m-2">
           <RouterLink
             class="nav-link btn btn-xs btn-primary text-light"

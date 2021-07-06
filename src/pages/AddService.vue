@@ -104,6 +104,13 @@
         >
           Add service
         </button>
+        <button
+          v-if="$store.state.config.isAdmin"
+          class="btn btn-danger m-2"
+          @click="deleteServiceClick"
+        >
+          Delete service
+        </button>
       </form>
     </div>
   </PublicLayout>
@@ -146,6 +153,7 @@ export default {
       search: "api/search",
       addService: "api/addService",
       getInfo: "api/getInfo",
+      deleteItem: "api/deleteItem",
     }),
     onFileChange(e) {
       var files = e.target.files || e.dataTransfer.files;
@@ -176,6 +184,16 @@ export default {
       const result = await this.addService(this.data);
       if (result && result.id) {
         this.$router.push("/info/" + result.id);
+      }
+    },
+    async deleteServiceClick(e) {
+      e.preventDefault();
+      const result = await this.deleteItem({
+        id: this.data.id,
+        ip: this.data.ip,
+      });
+      if (result) {
+        this.$router.push("/admin/");
       }
     },
   },

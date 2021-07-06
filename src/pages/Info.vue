@@ -86,7 +86,7 @@
         <div class="row" v-if="item">
           <div class="col" v-if="item.type == 'eshop'">
             <button
-              class="btn btn-light"
+              class="btn btn-light m-2"
               role="button"
               @click="$router.push('/edit/eshop/' + item.id)"
             >
@@ -95,7 +95,7 @@
           </div>
           <div class="col" v-if="item.type == 'place'">
             <button
-              class="btn btn-light"
+              class="btn btn-light m-2"
               role="button"
               @click="$router.push('/edit/place/' + item.id)"
             >
@@ -104,11 +104,20 @@
           </div>
           <div class="col" v-else>
             <button
-              class="btn btn-light"
+              class="btn btn-light m-2"
               role="button"
               @click="$router.push('/edit/service/' + item.id)"
             >
               Improve information about this service
+            </button>
+          </div>
+          <div class="col">
+            <button
+              v-if="$store.state.config.isAdmin"
+              class="btn btn-danger m-2"
+              @click="deleteItemClick"
+            >
+              Delete item
             </button>
           </div>
         </div>
@@ -205,9 +214,25 @@ export default {
   methods: {
     ...mapActions({
       getInfo: "api/getInfo",
+      openSuccess: "toast/openSuccess",
+      openError: "toast/openError",
+      deleteItem: "api/deleteItem",
     }),
     sanitizeHtml(data) {
       return xss(data);
+    },
+    async deleteItemClick(e) {
+      e.preventDefault();
+      const result = await this.deleteItem({
+        id: this.item.id,
+        ip: this.item.ip,
+      });
+      if (result) {
+        this.openSuccess("Items deleted: " + result);
+        this.$router.push("/admin/");
+      } else {
+        this.openError("Error occured");
+      }
     },
   },
 };
