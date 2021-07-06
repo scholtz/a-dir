@@ -28,21 +28,11 @@
         <div class="row">
           <div class="offset-md-3 col-md-6">
             Example:
-            <span role="button" @click="$router.push('/search/Exchange')"
-              >Exchange</span
-            >,
-            <span role="button" @click="$router.push('/search/Wallet')"
-              >Wallet</span
-            >,
-            <span role="button" @click="$router.push('/search/E-Shop')"
-              >E-Shop</span
-            >,
-            <span role="button" @click="$router.push('/search/Place')"
-              >Place</span
-            >,
-            <span role="button" @click="$router.push('/search/News')"
-              >News</span
-            >
+            <span role="button" @click="this.addTag('Exchange')">Exchange</span
+            >, <span role="button" @click="this.addTag('Wallet')">Wallet</span>,
+            <span role="button" @click="this.addTag('E-Shop')">E-Shop</span>,
+            <span role="button" @click="this.addTag('Place')">Place</span>,
+            <span role="button" @click="this.addTag('News')">News</span>
           </div>
         </div>
       </section>
@@ -172,6 +162,15 @@ export default {
         const tags = this.makeTags(
           this.search + ", " + this.$route.params.newTag
         );
+        this.search = tags.join(", ");
+      }
+      this.category = this.search;
+      this.cleanUpStart();
+    },
+    addTag(str) {
+      this.search = localStorage.getItem("AD_search");
+      if (str) {
+        const tags = this.makeTags(this.search + ", " + str);
         this.search = tags.join(", ");
       }
       this.category = this.search;
