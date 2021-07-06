@@ -50,7 +50,7 @@
       <section class="my-5" id="search">
         <h5>
           Browse solutions
-          <span v-if="category"
+          <span v-if="category && tags"
             >Tags:
             <span
               v-for="tag in tags"
@@ -74,6 +74,7 @@
             row-cols-xxl-6
             g-4
           "
+          v-if="list && list.length > 0"
         >
           <div class="col" v-for="item in list" :key="item.id">
             <div
