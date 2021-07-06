@@ -185,9 +185,11 @@ export default {
       this.cleanUpStart();
     },
     cleanUpStart() {
-      if (this.search.substring(0, 2) == ", ") {
-        this.search = this.search.substring(2);
-        this.category = this.search;
+      if (this.search.length > 1) {
+        if (this.search.substring(0, 2) == ", ") {
+          this.search = this.search.substring(2);
+          this.category = this.search;
+        }
       }
     },
     searchTag(event) {
